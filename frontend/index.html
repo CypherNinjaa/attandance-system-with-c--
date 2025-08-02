@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="loginPage" class="page">
+        <div class="login-container">
+            <h1>Attendance Management System</h1>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="userId">User ID:</label>
+                    <input type="text" id="userId" name="id" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+            <div id="loginError" class="error-message"></div>
+        </div>
+    </div>
+
+    <!-- Admin/Faculty Dashboard -->
+    <div id="adminDashboard" class="page hidden">
+        <header>
+            <h1>Admin Dashboard</h1>
+            <div class="user-info">
+                <span id="userWelcome">Welcome, </span>
+                <button id="logoutBtn">Logout</button>
+            </div>
+        </header>
+
+        <nav class="dashboard-nav">
+            <button id="studentsTab" class="nav-btn active">Students</button>
+            <button id="markAttendanceTab" class="nav-btn">Mark Attendance</button>
+            <button id="viewAttendanceTab" class="nav-btn">View Attendance</button>
+        </nav>
+
+        <!-- Students Tab -->
+        <div id="studentsContent" class="tab-content">
+            <h2>Students List</h2>
+            <div id="studentsList" class="students-grid"></div>
+        </div>
+
+        <!-- Mark Attendance Tab -->
+        <div id="markAttendanceContent" class="tab-content hidden">
+            <h2>Mark Attendance</h2>
+            <div class="attendance-form">
+                <div class="form-group">
+                    <label for="attendanceDate">Date:</label>
+                    <input type="date" id="attendanceDate" required>
+                </div>
+                <div id="attendanceTable" class="attendance-table"></div>
+                <button id="saveAttendance" class="btn-primary">Save Attendance</button>
+            </div>
+        </div>
+
+        <!-- View Attendance Tab -->
+        <div id="viewAttendanceContent" class="tab-content hidden">
+            <h2>Attendance Records</h2>
+            <div class="filters">
+                <select id="studentFilter">
+                    <option value="">All Students</option>
+                </select>
+                <button id="refreshAttendance">Refresh</button>
+            </div>
+            <div id="attendanceRecords" class="records-table"></div>
+        </div>
+    </div>
+
+    <!-- Student Dashboard -->
+    <div id="studentDashboard" class="page hidden">
+        <header>
+            <h1>Student Dashboard</h1>
+            <div class="user-info">
+                <span id="studentWelcome">Welcome, </span>
+                <button id="studentLogoutBtn">Logout</button>
+            </div>
+        </header>
+
+        <div class="student-content">
+            <div class="stats-card">
+                <h2>Attendance Statistics</h2>
+                <div id="attendanceStats">
+                    <div class="stat-item">
+                        <span class="stat-label">Total Days:</span>
+                        <span id="totalDays" class="stat-value">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Present Days:</span>
+                        <span id="presentDays" class="stat-value">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Absent Days:</span>
+                        <span id="absentDays" class="stat-value">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Attendance %:</span>
+                        <span id="attendancePercentage" class="stat-value">0%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="records-card">
+                <h2>My Attendance Records</h2>
+                <div id="studentAttendanceRecords" class="records-table"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
