@@ -1,0 +1,5 @@
+admin,admin123,ADMIN
+faculty,faculty123,FACULTY
+S001,student123,STUDENT
+S002,student123,STUDENT
+S003,student123,STUDENT
