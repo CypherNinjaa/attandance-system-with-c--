@@ -11,7 +11,9 @@ from pathlib import Path
 class AttendanceHandler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         # Set the directory to serve static files from
-        super().__init__(*args, directory="/home/runner/work/attandance-system-with-c--/attandance-system-with-c--/frontend", **kwargs)
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        frontend_dir = os.path.join(current_dir, "frontend")
+        super().__init__(*args, directory=frontend_dir, **kwargs)
     
     def do_POST(self):
         if self.path.startswith('/cgi-bin/'):
@@ -34,7 +36,8 @@ class AttendanceHandler(http.server.SimpleHTTPRequestHandler):
         
         # Map to actual CGI executable
         cgi_name = script_path.split('/')[-1]
-        cgi_executable = f"/home/runner/work/attandance-system-with-c--/attandance-system-with-c--/cgi-bin/{cgi_name}"
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        cgi_executable = os.path.join(current_dir, "cgi-bin", cgi_name)
         
         if not os.path.exists(cgi_executable):
             self.send_error(404)
@@ -55,7 +58,8 @@ class AttendanceHandler(http.server.SimpleHTTPRequestHandler):
         try:
             # Change to the project directory so CGI can find data files
             original_cwd = os.getcwd()
-            os.chdir("/home/runner/work/attandance-system-with-c--/attandance-system-with-c--")
+            current_dir = os.path.dirname(os.path.abspath(__file__))
+            os.chdir(current_dir)
             
             # Execute CGI script
             process = subprocess.Popen(
